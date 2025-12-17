@@ -18,7 +18,7 @@ if ($uri === '/api/pets' && $method === 'GET') {
 }
 
 if ($uri === '/api/pets' && $method === 'POST') {
-    $petController->store();
+    $petController->create();
 }
 
 if (preg_match('#^/api/pets/(\d+)$#', $uri, $matches)) {
@@ -29,22 +29,24 @@ if (preg_match('#^/api/pets/(\d+)$#', $uri, $matches)) {
     }
 
     if ($method === 'DELETE') {
-        $petController->destroy($id);
+        $petController->delete($id);
     }
     if ($method === 'PUT') {
         $petController->update($id);
     }
 }
 if ($uri === "/api/appointments" && $method === "POST") {
-   $appointmentController->store();
+    $appointmentController->create();
     return;
 }
 if ($uri === "/api/appointments" && $method === "GET") {
     (new AppointmentController($pdo))->index();
     return;
 }
-if (preg_match("#^/api/appointments/(\d+)$#", $uri, $matches)
-    && $method === "DELETE") {
-    $appointmentController->destroy((int) $matches[1]);
+if (
+    preg_match("#^/api/appointments/(\d+)$#", $uri, $matches)
+    && $method === "DELETE"
+) {
+    $appointmentController->delete((int) $matches[1]);
     return;
 }

@@ -24,16 +24,16 @@ class PetRepository
 
     public function create(Pet $pet): void
     {
-         $stmt = $this->db->prepare("
+        $stmt = $this->db->prepare("
         INSERT INTO pets (name, breed, size, birthdate)
         VALUES (:name, :breed, :size, :birthdate)
     ");
 
         $stmt->execute([
-        'name' => $pet->getName(),
-        'breed' => $pet->getBreed(),
-        'size' => $pet->getSize(),
-        'birthdate' => $pet->getBirthdate()
+            'name' => $pet->getName(),
+            'breed' => $pet->getBreed(),
+            'size' => $pet->getSize(),
+            'birthdate' => $pet->getBirthdate()
         ]);
     }
 
@@ -49,11 +49,11 @@ class PetRepository
     ");
 
         $stmt->execute([
-        'name' => $pet->getName(),
-        'breed' => $pet->getBreed(),
-        'size' => $pet->getSize(),
-        'birthdate' => $pet->getBirthdate(),
-        'id' => $id
+            'name' => $pet->getName(),
+            'breed' => $pet->getBreed(),
+            'size' => $pet->getSize(),
+            'birthdate' => $pet->getBirthdate(),
+            'id' => $id
         ]);
     }
 

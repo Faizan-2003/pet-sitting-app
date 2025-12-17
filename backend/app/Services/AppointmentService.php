@@ -29,10 +29,10 @@ class AppointmentService
 
         $this->repository->create($appointment);
     }
-public function getAll(): array
-{
-    return $this->repository->getAll();
-}
+    public function getAll(): array
+    {
+        return $this->repository->getAll();
+    }
 
     public function delete(int $id): void
     {

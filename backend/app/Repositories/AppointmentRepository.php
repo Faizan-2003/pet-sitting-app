@@ -24,9 +24,9 @@ class AppointmentRepository
             "duration" => $appointment->duration,
         ]);
     }
-public function getAll(): array
-{
-    $stmt = $this->pdo->query("
+    public function getAll(): array
+    {
+        $stmt = $this->pdo->query("
         SELECT 
             id,
             pet_id,
@@ -39,8 +39,8 @@ public function getAll(): array
         ORDER BY date, time
     ");
 
-    return $stmt->fetchAll();
-}
+        return $stmt->fetchAll();
+    }
 
     public function delete(int $id): void
     {

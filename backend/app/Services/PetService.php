@@ -18,9 +18,26 @@ class PetService
     {
         return $this->repository->findById($id);
     }
+    private const ALLOWED_SIZES = ['small', 'medium', 'large'];
+
+    private function validatePet(array $data): void
+    {
+        if (
+            empty($data['name']) ||
+            empty($data['breed']) ||
+            empty($data['birthdate'])
+        ) {
+            throw new \InvalidArgumentException("All fields are required.");
+        }
+
+        if (!in_array($data['size'], self::ALLOWED_SIZES, true)) {
+            throw new \InvalidArgumentException("Invalid size value.");
+        }
+    }
 
     public function createPet(array $data): void
     {
+        $this->validatePet($data);
         $pet = new Pet(
             null,
             $data['name'],
@@ -34,6 +51,8 @@ class PetService
 
     public function updatePet(int $id, array $data): void
     {
+        $this->validatePet($data);
+
         $pet = new Pet(
             $id,
             $data['name'],
