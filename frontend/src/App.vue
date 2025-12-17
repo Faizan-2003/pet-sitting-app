@@ -2,7 +2,7 @@
   <main class="app">
     <header class="header">
       <h1>🐾 Pet Sitting App</h1>
-      <p class="subtitle">Manage pets easily and safely</p>
+      <p class="subtitle">Manage pets easily</p>
     </header>
 
     <section class="content">
@@ -40,12 +40,12 @@ body {
 .header {
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: white;
-  padding: 2rem;
+  padding: 2.5rem;
 }
 
 .header h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.2rem;
 }
 
 .subtitle {

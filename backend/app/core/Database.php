@@ -4,7 +4,6 @@ namespace PetSittingApp\Api\Core;
 
 use PDO;
 use PDOException;
-
 class Database
 {
     public static function connect(): PDO
@@ -15,7 +14,8 @@ class Database
                 "root",
                 "",
                 [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
                 ]
             );
         } catch (PDOException $e) {

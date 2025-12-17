@@ -1,31 +1,50 @@
 <?php
 
 use PetSittingApp\Api\Controllers\PetController;
+use PetSittingApp\Api\Controllers\AppointmentController;
+
+if (!isset($pdo)) {
+    throw new Exception("PDO connection not available in routes.");
+}
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
 
-$controller = new PetController();
+$petController = new PetController();
+$appointmentController = new AppointmentController($pdo);
 
 if ($uri === '/api/pets' && $method === 'GET') {
-    $controller->index();
+    $petController->index();
 }
 
 if ($uri === '/api/pets' && $method === 'POST') {
-    $controller->store();
+    $petController->store();
 }
 
 if (preg_match('#^/api/pets/(\d+)$#', $uri, $matches)) {
     $id = (int) $matches[1];
 
     if ($method === 'GET') {
-        $controller->show($id);
+        $petController->show($id);
     }
 
     if ($method === 'DELETE') {
-        $controller->destroy($id);
+        $petController->destroy($id);
     }
     if ($method === 'PUT') {
-        $controller->update($id);
+        $petController->update($id);
     }
+}
+if ($uri === "/api/appointments" && $method === "POST") {
+   $appointmentController->store();
+    return;
+}
+if ($uri === "/api/appointments" && $method === "GET") {
+    (new AppointmentController($pdo))->index();
+    return;
+}
+if (preg_match("#^/api/appointments/(\d+)$#", $uri, $matches)
+    && $method === "DELETE") {
+    $appointmentController->destroy((int) $matches[1]);
+    return;
 }
