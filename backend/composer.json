@@ -1,0 +1,19 @@
+{
+    "name": "pet-sitting-app/api",
+    "description": "Pet sitting application – admission test",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "PetSittingApp\\Api\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Muhammad Faizan",
+            "email": "mf_2003@outlook.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
