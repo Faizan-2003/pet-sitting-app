@@ -98,20 +98,36 @@ pet-sitting-app/
 
 2. **Configure database connection:**
    
-   Update the database credentials in `backend/database/migrate.php` and your database configuration file.
+   Update the database credentials in:
+   ```
+   backend/app/Core/Database.php
+   ```
+   
+   Example:
+   ```php
+   return new PDO(
+       "mysql:host=localhost;dbname=pet_sitting_app",
+       "root",
+       "",
+       [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+   );
+   ```
 
 3. **Run migrations:**
    ```bash
    cd backend
-   php database/migrate.php migrate
+   php database/migrate.php
    ```
 
 4. **Start the PHP server:**
    ```bash
    php -S localhost:8000 -t public
    ```
-
-   The API will be available at `http://localhost:8000`
+   
+   The API will be available at:
+   ```
+   http://localhost:8000
+   ```
 
 ### Frontend Setup
 
